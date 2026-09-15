@@ -758,3 +758,48 @@ button, .btn, input[type="submit"]{
 button:active, .btn:active, input[type="submit"]:active{
   transform: translateY(0px) scale(.99);
 }
+
+/* ===== Copy + layout uplift ===== */
+
+/* Make top header text feel premium */
+header h1, .header h1 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+header p, .header p {
+  opacity: 0.92;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* New feature chips line */
+.subpill{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Make tabs/nav look more “designed” */
+nav a, .tabs a, .tab, .nav a{
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: background .15s ease, transform .15s ease;
+}
+
+nav a:hover, .tabs a:hover, .tab:hover, .nav a:hover{
+  background: rgba(16,185,129,0.10);
+  transform: translateY(-1px);
+}
+
+/* Reduce “empty” feel by tightening spacing */
+main, .container, .content, .app, #app{
+  padding-top: 18px;
+  padding-bottom: 30px;
+}
