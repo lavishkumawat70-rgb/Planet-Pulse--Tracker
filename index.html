@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlanetPulse — Carbon Footprint Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+</head>
+<body>
+
+  <!-- ═══ Header ═══ -->
+  <header class="app-header">
+    <h1><span class="icon">🌍</span>PlanetPulse</h1>
+    <p>Track your carbon footprint, one step at a time</p>
+  </header>
+
+  <!-- ═══ Tab Navigation ═══ -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="section-log">📝 Log</button>
+    <button class="tab-btn" data-tab="section-dashboard">📊 Dashboard</button>
+    <button class="tab-btn" data-tab="section-history">📋 History</button>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="main-content">
+
+    <!-- ── F1: Log Activity ── -->
+    <section id="section-log" class="tab-section active">
+      <div class="card">
+        <h2 class="card-title">📝 Log an Activity</h2>
+        <form id="log-form">
+          <div class="form-group">
+            <label for="log-type">Activity Type</label>
+            <select id="log-type" required></select>
+          </div>
+          <div class="form-group">
+            <label for="log-quantity">Quantity</label>
+            <div class="input-with-unit">
+              <input type="number" id="log-quantity" min="0.01" step="any" placeholder="e.g. 15" required />
+              <span class="unit-label" id="log-unit-label">km</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="log-date">Date</label>
+            <input type="date" id="log-date" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Log Activity</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── F3 + F4: Dashboard ── -->
+    <section id="section-dashboard" class="tab-section">
+
+      <!-- DP3: Week info -->
+      <div class="week-info">
+        <span id="dash-week-range">Week: –</span>
+        <span id="dash-day-of-week">Day – of 7</span>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="dash-week-total">0.00</div>
+          <div class="stat-label">kg CO₂ this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="dash-alltime-total">0.00</div>
+          <div class="stat-label">kg CO₂ all time</div>
+        </div>
+      </div>
+
+      <!-- F4: Weekly Target -->
+      <div class="card" id="dash-target-section">
+        <h2 class="card-title">🎯 Weekly Target</h2>
+        <div class="target-row">
+          <div class="form-group">
+            <label for="target-input">Target (kg CO₂)</label>
+            <input type="number" id="target-input" min="1" step="any" placeholder="e.g. 50" />
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="target-save-btn">Set Target</button>
+        </div>
+        <div class="progress-container">
+          <div class="progress-track">
+            <div class="progress-fill" id="dash-target-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-labels">
+            <span id="dash-target-used">No target set</span>
+            <span id="dash-target-pct"></span>
+          </div>
+        </div>
+
+        <!-- DP1: Nudge Banner -->
+        <div class="nudge-banner" id="dash-nudge">
+          <span class="nudge-icon">🌱</span>
+          <span class="nudge-text"></span>
+        </div>
+      </div>
+
+      <!-- F3: Category Breakdown -->
+      <div class="card">
+        <h2 class="card-title">📊 This Week's Breakdown</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>CO₂</th>
+                <th>Share</th>
+              </tr>
+            </thead>
+            <tbody id="dash-breakdown-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── F5: History & Filter ── -->
+    <section id="section-history" class="tab-section">
+      <div class="card">
+        <h2 class="card-title">📋 Activity History</h2>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div class="form-group">
+            <label for="filter-type">Filter by Type</label>
+            <select id="filter-type"></select>
+          </div>
+          <div class="form-group">
+            <label for="filter-date">Filter by Date</label>
+            <input type="date" id="filter-date" />
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="filter-clear-btn">Clear</button>
+        </div>
+
+        <p class="history-count" id="history-count">0 activities</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>CO₂</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ Toast Notification ═══ -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ═══ DP2: Absurd Input Confirmation Modal ═══ -->
+  <div id="absurd-modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-icon">⚠️</div>
+      <h3>Unusually High Value</h3>
+      <p id="absurd-modal-message"></p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="absurd-btn-edit">✏️ Edit</button>
+        <button class="btn btn-primary" id="absurd-btn-log">✅ Log Anyway</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Scripts (ES Modules) ═══ -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
