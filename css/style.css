@@ -714,3 +714,47 @@ header, .header, .topbar{
   section, .card, .panel{ border-radius: 14px; }
   button, .btn{ width: 100%; }
 }
+
+   /* ===== Extra UI polish (safe, CSS-only) ===== */
+
+/* Make page feel less empty */
+body{
+  background:
+    radial-gradient(900px 500px at 10% 10%, rgba(16,185,129,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(59,130,246,.12), transparent 55%),
+    linear-gradient(180deg, #f8fafc, #f1f5f9) !important;
+}
+
+/* Card depth + subtle hover */
+.card, section, .panel{
+  border: 1px solid rgba(2,6,23,.08) !important;
+  box-shadow: 0 10px 25px rgba(2,6,23,.08) !important;
+}
+
+.card:hover, section:hover, .panel:hover{
+  box-shadow: 0 14px 32px rgba(2,6,23,.10) !important;
+  transform: translateY(-1px);
+  transition: .15s ease;
+}
+
+/* Improve table readability */
+table tr:nth-child(even){
+  background: rgba(2,6,23,.02);
+}
+table tr:hover{
+  background: rgba(16,185,129,.08);
+  transition: .12s ease;
+}
+
+/* Make inputs feel premium */
+input, select{
+  background: #fff !important;
+}
+
+/* Buttons: slightly more “alive” */
+button, .btn, input[type="submit"]{
+  letter-spacing: .2px;
+}
+button:active, .btn:active, input[type="submit"]:active{
+  transform: translateY(0px) scale(.99);
+}
