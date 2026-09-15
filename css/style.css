@@ -803,3 +803,24 @@ main, .container, .content, .app, #app{
   padding-top: 18px;
   padding-bottom: 30px;
 }
+/* ===== Reduce empty side space on large screens ===== */
+@media (min-width: 1100px){
+  main, .container, .content, .app, #app{
+    max-width: 1180px !important;   /* wider layout */
+  }
+}
+
+/* Let cards use more width (so they don't look tiny) */
+.card, section, .panel{
+  width: 100% !important;
+}
+
+/* Make the middle area feel designed (not blank) */
+main, .container, .content, .app, #app{
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(2,6,23,0.06);
+  border-radius: 18px;
+  padding-top: 18px;
+  padding-bottom: 28px;
+  backdrop-filter: blur(6px);
+}
