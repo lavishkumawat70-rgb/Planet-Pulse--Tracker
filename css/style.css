@@ -824,3 +824,24 @@ main, .container, .content, .app, #app{
   padding-bottom: 28px;
   backdrop-filter: blur(6px);
 }
+/* Fix: Weekly target input too narrow */
+#target-input{
+  width: 220px !important;
+  min-width: 220px !important;
+}
+
+/* Ensure the target row aligns nicely */
+.target-row{
+  align-items: end;
+  gap: 12px;
+}
+
+/* Optional: hide number spinner arrows so value is clearer */
+#target-input::-webkit-outer-spin-button,
+#target-input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+#target-input{
+  -moz-appearance: textfield;
+}
