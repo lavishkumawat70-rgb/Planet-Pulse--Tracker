@@ -845,3 +845,29 @@ main, .container, .content, .app, #app{
 #target-input{
   -moz-appearance: textfield;
 }
+/* === Fix weekly target input being tiny (layout issue) === */
+.target-row{
+  display: grid !important;
+  grid-template-columns: 280px 1fr !important; /* left column for input, right for button */
+  gap: 12px !important;
+  align-items: end !important;
+}
+
+.target-row .form-group{
+  min-width: 280px !important;
+}
+
+#target-input{
+  width: 100% !important;   /* fill the 280px column */
+  min-width: 280px !important;
+}
+
+/* On small screens: stack nicely */
+@media (max-width: 600px){
+  .target-row{
+    grid-template-columns: 1fr !important;
+  }
+  #target-save-btn{
+    width: 100% !important;
+  }
+}
