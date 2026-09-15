@@ -4,7 +4,14 @@
 
 A simple, elegant web app that lets you log daily activities and track your carbon footprint — with weekly targets, history, and smart nudges.
 
-🔗 **Live Demo**: [https://YOUR_USERNAME.github.io/PlanetPulse/](https://YOUR_USERNAME.github.io/PlanetPulse/)
+🔗 **Live Demo**: https://lavishkumawat70-rgb.github.io/Planet-Pulse--Tracker/
+
+Track: Track 2 – Real-World AI Products (PlanetPulse)
+Auth: Not implemented (as per rules; all features accessible without login)
+Standard API: Not implemented (UI/browser-agent grading)
+
+## Run locally
+Open `index.html` in a browser, or run a local server (optional).
 
 ---
 
